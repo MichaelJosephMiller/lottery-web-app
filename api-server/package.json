@@ -3,13 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "scraper": "node ./scraper/scraper.js"
   },
   "dependencies": {
     "debug": "~2.6.9",
+    "electron": "^4.1.4",
     "express": "~4.16.0",
     "mongoose": "^5.5.2",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "nightmare": "^3.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"
