@@ -1,31 +1,44 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+
+    <v-navigation-drawer app clipped :value="drawer" mobile-break-point=960 disable-resize-watcher>
+      <h2>Navigation</h2>
+      <v-list>
+        <v-list-tile v-for="route in routes" :key="route.name" :to='route.path'>
+          <v-list-tile-content>
+            <v-list-tile-title tag='span' :to='route.path'>{{ route.name }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-toolbar class='primary' app fixed clipped-left>
+      <v-toolbar-side-icon class='hidden-md-and-up' @click='drawer = !drawer'></v-toolbar-side-icon>
+      <v-toolbar-title class="headline">
+        <h1>Lottery Web App</h1>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <div class='hidden-sm-and-down'>
+      <v-btn flat large tag='span' v-for='route in routes' :key='route.name' :to='route.path'>
+        {{route.name}}
+      </v-btn>
+      </div>
+    </v-toolbar>
+
+    <v-content>
+      <router-view />
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+  export default {
+    name: 'App',
+    data() {
+      return {
+        drawer: false,
+        routes: this.$router.options.routes
+      }
+    }
+  }
+</script>
