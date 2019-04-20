@@ -10,11 +10,12 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'array-bracket-spacing': [ 'error', 'always' ],
     'space-before-function-paren': ['error', {
       'anonymous': 'always',
       'named': 'never',
       'asyncArrow': 'always'
-    }]
+    }],
   },
   parserOptions: {
     parser: 'babel-eslint'
