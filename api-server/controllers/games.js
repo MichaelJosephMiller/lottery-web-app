@@ -11,11 +11,11 @@ exports.get_all_games = (req, res) => {
 
 exports.update_game_by_id = (req, res) => {
   Games.update({ _id: req.body.id }, req.body, (err) => {
-    err ? res.send(err) : res.send('Mega Millions updated.')
+    err ? res.send(err) : res.json('{"success": true}')
   })
 }
 
-exports.get_game_by_id = (req, res) => {
+exports.get_game_by_id = (req, res ) => {
   Games.find({ name: req.body.id }, (err, game) => {
     err ? res.send(err) : res.json(game)
   })

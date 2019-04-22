@@ -12,7 +12,7 @@ module.exports = new mongoose.Schema({
   megaplier: { type: String, required: true },
   big_winners: {
     match_type: { type: String },
-    states: { type: [ String ] }
+    states: { type: String }
   },
   est_jackpot: { type: String },
   cash_option: { type: String }

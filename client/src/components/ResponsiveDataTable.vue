@@ -33,17 +33,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'responsive-data-table',
-    props: {
-      headers: Array,
-      items: Array,
-    },
-    data() {
-      return {
-      }
+export default {
+  name: 'responsive-data-table',
+  props: {
+    headers: Array,
+    items: Array,
+  },
+  data() {
+    return {
     }
   }
+}
 </script>
 
 <style scoped>

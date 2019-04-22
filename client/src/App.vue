@@ -32,13 +32,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    data() {
-      return {
-        drawer: false,
-        routes: this.$router.options.routes
-      }
+export default {
+  name: 'App',
+  data() {
+    return {
+      drawer: false,
+      routes: this.$router.options.routes
     }
   }
+}
 </script>

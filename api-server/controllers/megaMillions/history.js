@@ -3,21 +3,22 @@ const mongoose = require('mongoose')
 const megaMillionsSchema = require('../../schemas/megaMillions')
 const MegaMillionsHistory = mongoose.model('History', megaMillionsSchema)
 
-module.exports.create_new_drawing = (req, res) => {
-  MegaMillionsHistory.create(req.body, (err, drawing) => {
-    err ? res.send(err) : res.json(drawing)
+module.exports.create_new_drawing = new Promise((resolve, reject) => {
+  (drawing) => {
+  MegaMillionsHistory.create(drawing, (err, result) => {
+    err ? reject(err) : resolve(result)
   })
 }
 
 module.exports.delete_drawing_by_id = (req, res) => {
   MegaMillionsHistory.deleteOne({ _id: req.body.id }, (err) => {
-    err ? res.send(err) : res.send('Drawing successfully deleted')
+    err ? res.send(err) : res.json('{"success": true}')
   })
 }
 
 module.exports.update_drawing_by_id = (req, res) => {
   MegaMillionsHistory.update({ _id: req.body.id }, (err) => {
-    err ? res.send(err) : res.send('Drawing updated')
+    err ? res.send(err) : res.json('{"success": true}')
   })
 }
 
