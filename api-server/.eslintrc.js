@@ -1,11 +1,10 @@
 module.exports = {
   'root': true,
+  'parser': 'babel-eslint',
   'parserOptions': {
-    'ecmaVersion': 2019,
-    'sourceType': 'module',
-    'ecmaFeatures': {
-      'impliedStrict': true
-    }
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": true
   },
   'env': {
       'node': true
@@ -16,10 +15,8 @@ module.exports = {
       'Atomics': 'readonly',
       'SharedArrayBuffer': 'readonly'
   },
-  'parserOptions': {
-      'ecmaVersion': 2018
-  },
   'rules': {
+      'strict': 0,
       'indent': ['error', 2 ],
       'linebreak-style': ['error', 'windows' ],
       'quotes': ['error','single'],

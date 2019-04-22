@@ -1,28 +1,45 @@
 'use strict'
 const mongoose = require('mongoose')
 const gamesSchema = require('../schemas/games')
-const Games = mongoose.model('MegaMillions', gamesSchema)
+const Games = mongoose.model('Games', gamesSchema)
+const Game = require('../classes/Game')
 
-exports.get_all_games = (req, res) => {
-  Games.find({}, (err, games) => {
-    err ? res.send(err) : res.json(games)
-  })
+const instanceCheck = (game) => {
+  if (!(game instanceof Game)) {
+    throw Error('game object must be an instance of Game class')
+  }
 }
 
-exports.update_game_by_id = (req, res) => {
-  Games.update({ _id: req.body.id }, req.body, (err) => {
-    err ? res.send(err) : res.json('{"success": true}')
-  })
-}
+exports.get_all_games = new Promise((resolve, reject) => {
+  return () => {
+    Games.find({}, (err, games) => {
+      err ? reject(err) : resolve(games)
+    })
+  }
+})
 
-exports.get_game_by_id = (req, res ) => {
-  Games.find({ name: req.body.id }, (err, game) => {
-    err ? res.send(err) : res.json(game)
-  })
-}
+exports.update_game_by_id = new Promise((resolve, reject) => {
+  return (game) => {
+    try { instanceCheck(game) } catch(err) { throw Error(err) }
+    Games.update({ _id: game.id }, game, (err) => {
+      err ? reject(err) : resolve('{"success": true}')
+    })
+  }
+})
 
-exports.create_new_game = (req, res) => {
-  Games.create(req.body, (err, game) => {
-    err ? res.send(err) : res.json(game)
-  })
-}
+exports.get_game_by_id = new Promise((resolve, reject) => {
+  return (id) => {
+    Games.find({ _id: id }, (err, game) => {
+      err ? reject(err) : resolve(game)
+    })
+  }
+})
+
+exports.create_new_game = new Promise((resolve, reject) => {
+  return (game) => {
+    try { instanceCheck(game) } catch(err) { throw Error(err) }
+    Games.create(game, (err, game) => {
+      err ? reject(err) : resolve(game)
+    })
+  }
+})
