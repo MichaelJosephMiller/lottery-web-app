@@ -1,7 +1,7 @@
 'use strict'
 const express = require('express')
 const router = express.Router()
-const controllers = require('../controllers/games')
+const controllers = require('../db/controllers/games')
 const Game = require('../classes/Game')
 
 router.get('/', (req, res) => {
