@@ -22,7 +22,7 @@ module.exports = class Game {
   validateDate() {
     if (typeof this.next_draw_date === 'string') {
       // date must parse into a date object
-      try { this.next_draw_date = Date.parse(this.next_draw_date) }
+      try { this.next_draw_date = new Date(this.next_draw_date) }
       catch(err) { throw Error(`Date is not in a supported format. \n\t ${JSON.stringify(err)}`) }
     }
 
